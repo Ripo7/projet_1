@@ -6,7 +6,7 @@ import { User } from './user.service';
 })
 export class ArticlesService {
 
-articles: Article[] = [{text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque magna purus, varius a ligula et, pulvinar tempor tellus. Vestibulum vitae justo vitae velit rutrum sodales. Suspendisse finibus vitae justo vitae porttitor. Ut porta felis eu purus pellentesque consectetur at et eros. Aliquam vitae tellus commodo, fermentum metus eget, mollis enim. Nam eu tortor placerat, mollis dui eu, venenatis est. Vestibulum auctor felis tincidunt mauris imperdiet, lacinia facilisis erat fringilla.', user: {id:0, pseudo:'Super', mdp:'Admin', avatar: 'tester', role:0}}];
+articles: Article[] = [{text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque magna purus, varius a ligula et, pulvinar tempor tellus. Vestibulum vitae justo vitae velit rutrum sodales. Suspendisse finibus vitae justo vitae porttitor. Ut porta felis eu purus pellentesque consectetur at et eros. Aliquam vitae tellus commodo, fermentum metus eget, mollis enim. Nam eu tortor placerat, mollis dui eu, venenatis est. Vestibulum auctor felis tincidunt mauris imperdiet, lacinia facilisis erat fringilla.', user: {id:0, pseudo:'Admin', mdp:'Admin', avatar: 'tester', role:0}}];
 
   constructor() { }
 
