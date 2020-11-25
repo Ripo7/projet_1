@@ -1,0 +1,50 @@
+.card {
+    border-color: black;
+}
+
+.title {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.content {
+    padding: 1em;
+    text-align: center;
+}
+
+  .tigre {
+    background:  url("../../assets/tigre.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.lion {
+    background:  url("../../assets/lion.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.aigle {
+    background:  url("../../assets/aigle.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.canon {
+    background:  url("../../assets/canon.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.epees {
+    background:  url("../../assets/epees.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.couronne {
+    background:  url("../../assets/couronne.svg")  center / contain no-repeat;
+    background-size: 75%;
+}
+
+.tester {
+    background:  url("../../assets/tester.svg")  center / contain no-repeat;
+    background-size: 75%;
+}

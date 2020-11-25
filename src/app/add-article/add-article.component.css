@@ -1,0 +1,27 @@
+.success {
+    color: green;
+}
+
+.myForm {
+    display: grid;
+}
+
+.title {
+    text-align: center;
+}
+
+
+.my-button {
+    background-color: black;
+    color: white;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: black !important;
+   }
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: black !important;;
+  }

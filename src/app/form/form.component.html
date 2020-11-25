@@ -1,0 +1,55 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7 container-fluid content">
+      <mat-card>
+        <mat-card-title class="title">
+          Add a user
+        </mat-card-title>
+      </mat-card>
+      
+      
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="myForm" > 
+          <mat-form-field class="example-full-width">
+              <mat-label>
+                  Pseudo:
+              </mat-label>
+              <input autocomplete="off" type="text" formControlName="pseudo" matInput />
+              <mat-hint *ngIf="pseudo.hasError('minlength')"> Min length is 3</mat-hint>
+              <mat-error *ngIf="pseudo.hasError('required') && pseudo.touched">
+                      Pseudo is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-label class="my-input">
+                  Password:
+              </mat-label>
+              <input autocomplete="off" type="password" formControlName="mdp" matInput />
+              <mat-hint *ngIf="mdp.hasError('minlength')"> Min length is 3</mat-hint>
+              <mat-error *ngIf="mdp.hasError('required') && mdp.touched">
+                      Password is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="small-width">
+              <mat-label>Avatar</mat-label>
+              <mat-select formControlName="avatar" [(value)]="selected" [ngClass]="selected" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let av of avatars" [value]="av" [appHighlight]>
+                  <mat-icon svgIcon="{{av}}"></mat-icon>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          <button class="my-button" mat-raised-button type="submit" [disabled]="!myForm.valid">Submit</button>
+          <p class="success" *ngIf="submitted && !hasError">
+            User added
+          </p>
+          <mat-error *ngIf="submitted && hasError">
+            User not added
+          </mat-error>
+      </form>       
+    </div>
+  </div>  
+</div>
+      
+
+

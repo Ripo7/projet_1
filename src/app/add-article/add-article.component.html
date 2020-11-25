@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-title class="title">
+        Add an article
+    </mat-card-title>
+</mat-card>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="myForm" > 
+    <mat-form-field class="example-full-width">
+        <mat-label>
+            Article:
+        </mat-label>
+        <input autocomplete="off" type="text" formControlName="text" matInput />
+    </mat-form-field>
+    <button class="my-button" mat-raised-button type="submit" [disabled]="!myForm.valid">Submit</button>
+    <p class="success" *ngIf="submitted && !hasError">
+        Article added
+      </p>
+      <mat-error *ngIf="submitted && hasError">
+        Article not added
+      </mat-error>
+</form>  
+

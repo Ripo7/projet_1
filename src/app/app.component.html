@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" >
+                        <button class="button" mat-button [routerLink]="['login']">Login</button>
+                    </li>
+                    <li class="nav-item" *ngIf="userLogged.role == 0 || userLogged.role == 1"> 
+                      <button class="button" mat-button [routerLink]="['home']">Home</button>
+                    </li>
+                    <button class="button" mat-button [matMenuTriggerFor]="menuUser" *ngIf="userLogged.role == 0 || userLogged.role == 1">Users</button>
+                    <mat-menu #menuUser="matMenu">
+                        <button mat-menu-item [routerLink]="['users']">User list</button>
+                        <button mat-menu-item [routerLink]="['add-user']" >Add user</button>
+                    </mat-menu>
+                    <button  class="button" mat-button [matMenuTriggerFor]="menuArticle" *ngIf="userLogged.role == 0 || userLogged.role == 1">Articles</button>
+                    <mat-menu #menuArticle="matMenu">
+                        <button mat-menu-item [routerLink]="['articles']">Article list</button>
+                        <button mat-menu-item [routerLink]="['add-article']" >Add article</button>
+                    </mat-menu>
+                  </ul>
+                </div>
+            </nav>
+        </div>
+      </div>
+    <div class="row test">
+        <div class="col-7 container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
