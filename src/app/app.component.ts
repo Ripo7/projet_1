@@ -70,7 +70,7 @@ export class AppComponent implements AfterContentChecked, OnInit {
 }
 
 export const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "home", component: HomeComponent, canActivate: [AlwaysAuthGuard] },
   { path: "add-user", component: FormComponent, canActivate: [AdminAuthGuard]},
   { path: "users", component: UserListComponent, canActivate: [AlwaysAuthGuard] },
