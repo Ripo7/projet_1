@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
@@ -9,25 +10,19 @@ export class UserService {
   userLogged: User;
   logged: boolean = false
 
-  users: User[] = [{id:0, pseudo:'Admin', mdp:'Admin', avatar: 'tester', role:0}]
+  constructor(private router: Router, private http: HttpClient) { }
 
-  constructor(private router: Router) { }
-
-  addUser(user:User){
-    let promise = new Promise((resolve, reject) => {
-      let oldLength = this.users.length;
-      this.users.push(user);
-      if(this.users.length == oldLength + 1){
-        resolve();
-      } else {
-        reject();
-      }
-    });
-    return promise;
+  addUser(pseudo:string, mdp: string, avatar: string, role: number){
+    let formData = { pseudo, mdp, avatar, role }
+    return this.http.post<any>('http://localhost:3000/users', formData).toPromise();
   }
 
   getAllUser(){
-    return this.users;
+    return this.http.get<any>('http://localhost:3000/users/all').toPromise();
+  }
+
+  getUserByPseudo(pseudo :string) {
+    return this.http.get<any>(`http://localhost:3000/users/${pseudo}`).toPromise();
   }
 
   getUserLogged(){
@@ -38,32 +33,20 @@ export class UserService {
     return this.logged;
   }
 
-  checkLogin(pseudo: string, mdp: string){
-    let promise = new Promise((resolve, reject) => {
-      for(let prop of this.users){
-        if(prop.pseudo == pseudo && prop.mdp == mdp){
-          this.logged = true;
-          this.userLogged = prop;
-          break;
-        } else {
-          this.logged = false;
-        }
-      }
-      if(this.logged){
-        resolve();
-        console.log(`${this.userLogged.pseudo} is logged`);
-        this.router.navigate(['home']);
-      } else {
-        reject();
-        console.log("Error");
-      }
-    });
-    return promise;
+  setLogged(isLogged: boolean, user: User) {
+    this.logged = isLogged;
+    this.userLogged = user;
   }
+
+
+  checkLogin(pseudo: string, mdp: string){
+    return this.http.post<any>('http://localhost:3000/users/login', { pseudo, mdp }).toPromise();
+  }
+
 }
 
 export class User{
-  id: number;
+  userId: number;
   pseudo: string;
   mdp: string;
   avatar: string;
@@ -71,7 +54,7 @@ export class User{
   
 
   constructor(id:number,pseudo:string, mdp: string, avatar: string, role:number){
-    this.id = id;
+    this.userId = id;
     this.pseudo = pseudo;
     this.mdp = mdp;
     this.avatar = avatar;

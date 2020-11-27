@@ -30,16 +30,13 @@ export class FormComponent implements OnInit {
     'epees'
   ]
 
-  id = 0;
-
   myForm: FormGroup;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router:Router, private itunes: ItunesService) { }
   
 
   onSubmit(){
-    this.id++;
-    this.userService.addUser(new User(this.id,this.pseudo.value,this.mdp.value, this.avatar.value, 1))
+    this.userService.addUser(this.pseudo.value,this.mdp.value, this.avatar.value, 1)
     .then(() => {
       this.submitted = true;
       this.hasError = false;

@@ -21,7 +21,7 @@ export class AddArticleComponent implements OnInit {
   get text() {return this.myForm.get('text')}
 
   onSubmit(){
-    this.articlesService.addArticle(new Article(this.text.value, this.userService.getUserLogged()))
+    this.articlesService.addArticle(this.userService.getUserLogged(), this.text.value)
     .then(() => {
       this.submitted = true;
       this.hasError = false;

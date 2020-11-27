@@ -57,14 +57,14 @@ export class AppComponent implements AfterContentChecked, OnInit {
     
   }
   ngOnInit(): void {
-    this.userLogged = {id: -1, pseudo: '-1', mdp:'-1', avatar: '-1', role: -1};
+    this.userLogged = {userId: -1, pseudo: '-1', mdp:'-1', avatar: '-1', role: -1};
   }
 
   ngAfterContentChecked(): void {
     if(this.userService.getUserLogged()){
       this.userLogged = this.userService.getUserLogged();
     } else {
-      this.userLogged = {id: -1, pseudo: '-1', mdp:'-1', avatar: '-1', role: -1};
+      this.userLogged = {userId: -1, pseudo: '-1', mdp:'-1', avatar: '-1', role: -1};
     }
   }
 }

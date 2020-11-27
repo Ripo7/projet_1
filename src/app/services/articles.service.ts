@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './user.service';
 
@@ -6,36 +7,28 @@ import { User } from './user.service';
 })
 export class ArticlesService {
 
-articles: Article[] = [{text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque magna purus, varius a ligula et, pulvinar tempor tellus. Vestibulum vitae justo vitae velit rutrum sodales. Suspendisse finibus vitae justo vitae porttitor. Ut porta felis eu purus pellentesque consectetur at et eros. Aliquam vitae tellus commodo, fermentum metus eget, mollis enim. Nam eu tortor placerat, mollis dui eu, venenatis est. Vestibulum auctor felis tincidunt mauris imperdiet, lacinia facilisis erat fringilla.', user: {id:0, pseudo:'Admin', mdp:'Admin', avatar: 'tester', role:0}}];
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllArticles(){
-    return this.articles;
+    return this.http.get<any>('http://localhost:3000/articles/all').toPromise();
   }
 
-  addArticle(article: Article){
-    let promise = new Promise((resolve, reject) => {
-      let oldLength = this.articles.length;
-      this.articles.push(article);
-      if(this.articles.length == oldLength + 1){
-        resolve();
-      } else {
-        reject();
-      }
-    })
-    return promise;
+  addArticle(user: User, text : string){
+    let formData = { userId: user.userId, text: text };
+    return this.http.post<any>('http://localhost:3000/articles', formData).toPromise();
   }
 
 }
 
 
 export class Article {
+  articleId: number;
+  user: User;
   text: string;
-  user:User
 
-  constructor(text: string, user: User){
+  constructor(id:number,text: string, user: User){
+    this.articleId = id;
+    this.user = user; 
     this.text = text;
-    this.user = user;
   }
 }
